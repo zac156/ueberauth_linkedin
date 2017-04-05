@@ -107,7 +107,8 @@ defmodule Ueberauth.Strategy.LinkedIn do
       email: user["emailAddress"],
       first_name: user["firstName"],
       image: user["pictureUrl"],
-      last_name: user["lastName"]
+      last_name: user["lastName"],
+      location: user["location"]
     }
   end
 
@@ -127,7 +128,7 @@ defmodule Ueberauth.Strategy.LinkedIn do
   defp skip_url_encode_option, do: [path_encode_fun: fn(a) -> a end]
 
   defp user_query do
-    "/v1/people/~:(id,picture-url,email-address,firstName,lastName)?format=json"
+    "/v1/people/~:(id,picture-url,email-address,firstName,lastName,location)?format=json"
   end
 
   defp fetch_user(conn, token) do
